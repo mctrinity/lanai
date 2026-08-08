@@ -51,7 +51,7 @@ export default function AboutPage() {
                     </p>
 
                     <p className="font-display text-2xl italic text-(--palm)">
-                      Anyway, that&apos;s probably enough about me. 🙂
+                      Anyway, that&apos;s probably enough about me.
                     </p>
                 </div>
           </div>
