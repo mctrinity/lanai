@@ -55,7 +55,7 @@ export default function Home() {
 
             <div className="mt-8 max-w-xl space-y-5 text-base leading-8 text-(--ink)">
               <p>
-                I&apos;m Maki. Lanai is where I keep stories, things I&apos;m enjoying, and little pieces of everyday life
+                Lanai is where I keep stories, things I&apos;m enjoying, and little pieces of everyday life
                 worth keeping.
               </p>
 
