@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+};
+
 export default function AboutPage() {
   return (
     <main className="flex-1">
@@ -6,7 +12,7 @@ export default function AboutPage() {
           About
         </p>
 
-        <div className="mt-10 grid gap-12 md:grid-cols-[1fr_2fr]">
+        <div className="mt-10 grid gap-8 md:grid-cols-[1fr_2fr] md:gap-12">
           <div>
             <h1 className="font-display text-6xl leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
                 So, a little

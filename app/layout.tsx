@@ -16,7 +16,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Lanai",
+  title: {
+    default: "Lanai",
+    template: "%s · Lanai",
+  },
   description: "A little place on the internet.",
 };
 

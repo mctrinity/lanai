@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Journal",
+};
+
 import Link from "next/link";
 
 const entries = [

@@ -13,7 +13,7 @@ export default function Header() {
         </span>
       </Link>
 
-      <nav className="flex gap-7 pt-2 text-sm">
+      <nav className="flex gap-4 pt-2 text-sm sm:gap-7">
         <Link className="transition-opacity hover:opacity-50" href="/about">
           About
         </Link>

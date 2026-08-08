@@ -17,7 +17,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-8 max-w-md text-lg leading-8 text-(--muted)">
-            A quiet corner for photographs, stories, things I love, and whatever else finds its way here.
+            A place for stories, things I like, and whatever else happens to catch my attention.
           </p>
 
           <a
@@ -55,8 +55,7 @@ export default function Home() {
 
             <div className="mt-8 max-w-xl space-y-5 text-base leading-8 text-(--ink)">
               <p>
-                I&apos;m Maki. Lanai is where I collect photographs, stories,
-                things I&apos;m enjoying, and little pieces of everyday life
+                I&apos;m Maki. Lanai is where I keep stories, things I&apos;m enjoying, and little pieces of everyday life
                 worth keeping.
               </p>
 

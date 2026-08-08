@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Why Lanai?",
+};
+
 import Link from "next/link";
 
 export default function WhyLanaiPage() {
