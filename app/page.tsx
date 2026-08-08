@@ -1,35 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <header className="mx-auto flex max-w-7xl items-start justify-between px-6 py-8 md:px-12">
-        <Link href="/" className="group">
-          <span className="font-display block text-3xl font-medium tracking-tight">
-            Lanai
-          </span>
-
-          <span className="mt-1 block text-xs text-(--muted)">
-            A little place on the internet.
-          </span>
-        </Link>
-
-        <nav className="flex gap-7 pt-2 text-sm">
-          <a className="transition-opacity hover:opacity-50" href="#about">
-            About
-          </a>
-
-          <a className="transition-opacity hover:opacity-50" href="#journal">
-            Journal
-          </a>
-
-          <a className="transition-opacity hover:opacity-50" href="#photos">
-            Photos
-          </a>
-        </nav>
-      </header>
-
+      
       <section className="mx-auto grid min-h-[75vh] max-w-7xl items-center gap-12 px-6 py-16 md:grid-cols-2 md:px-12">
         <div>
           <p className="mb-6 text-xs uppercase tracking-[0.3em] text-(--palm)">
@@ -65,6 +39,35 @@ export default function Home() {
           />
         </div>
       </section>
+
+      <section id="about" className="bg-(--sage)">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:grid-cols-[1fr_2fr] md:px-12 lg:py-24">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-(--palm)">
+              About
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display max-w-3xl text-5xl leading-[1.05] tracking-tight md:text-6xl">
+              Nice to have you here.
+            </h2>
+
+            <div className="mt-8 max-w-xl space-y-5 text-base leading-8 text-(--ink)">
+              <p>
+                I&apos;m Maki. Lanai is where I collect photographs, stories,
+                things I&apos;m enjoying, and little pieces of everyday life
+                worth keeping.
+              </p>
+
+              <p>
+                Stay awhile. There&apos;s always room on the lanai.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
