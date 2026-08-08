@@ -22,8 +22,8 @@ export default function Header() {
           Journal
         </Link>
 
-        <Link className="transition-opacity hover:opacity-50" href="/photos">
-          Photos
+        <Link className="transition-opacity hover:opacity-50" href="/shelf">
+          Shelf
         </Link>
       </nav>
     </header>
