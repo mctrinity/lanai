@@ -59,7 +59,7 @@ export default function Home() {
                 worth keeping.
               </p>
 
-              <p>
+              <p className="font-display pt-3 text-2xl italic leading-relaxed text-(--palm) md:text-3xl">
                 Stay awhile. There&apos;s always room on the lanai.
               </p>
             </div>
