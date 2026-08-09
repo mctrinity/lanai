@@ -1,39 +1,28 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { getPublishedJournalEntries } from "@/lib/notion";
 
 export const metadata: Metadata = {
   title: "Journal",
 };
 
-import Link from "next/link";
+function formatDate(date: string | null) {
+  if (!date) return "";
 
-const entries = [
-  {
-    slug: "why-lanai",
-    date: "August 8, 2026",
-    title: "Why Lanai?",
-    excerpt:
-      "A little about why I decided to make this place in the first place.",
-  },
-  {
-    slug: "the-china-syndrome",
-    date: "July 28, 2026",
-    title: "The China Syndrome",
-    excerpt:
-      "There's something about Jack Godell that has always stayed with me.",
-  },
-  {
-    slug: "currently-playing",
-    date: "July 12, 2026",
-    title: "Currently playing",
-    excerpt:
-      "Apparently single-player is still my preferred way to disappear into another world.",
-  },
-];
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(date));
+}
 
-export default function JournalPage() {
+export default async function JournalPage() {
+  const entries = await getPublishedJournalEntries();
+
   return (
     <main className="flex-1">
-      <section className="mx-auto max-w-7xl px-6 py-20 md:px-12 lg:py-28">
+      <section className="mx-auto max-w-7xl px-6 py-20 md:px-12 lg:py-24">
         <p className="text-xs uppercase tracking-[0.3em] text-(--palm)">
           Journal
         </p>
@@ -45,11 +34,11 @@ export default function JournalPage() {
         <div className="mt-20 max-w-4xl">
           {entries.map((entry) => (
             <article
-              key={entry.slug}
+              key={entry.id}
               className="grid gap-4 border-t border-black/10 py-10 md:grid-cols-[180px_1fr]"
             >
               <time className="text-xs uppercase tracking-[0.2em] text-(--muted)">
-                {entry.date}
+                {formatDate(entry.published)}
               </time>
 
               <div>
