@@ -1,56 +1,42 @@
 import type { Metadata } from "next";
+import {
+  getDisplayedShelfItems,
+  type ShelfItem,
+} from "@/lib/notion";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Shelf",
 };
 
-const shelf = [
-  {
-  title: "Books",
-  items: [
-    {
-      name: "Michael Crichton",
-      note: "Science, technology, and things going terribly wrong.",
-    },
-    {
-      name: "Stephen King",
-      note: "Horror, strange things, and very human characters.",
-    },
-    {
-      name: "Isaac Asimov",
-      note: "Robots, ideas, and questions that are still interesting.",
-    },
-    {
-      name: "Anne of Green Gables",
-      note: "I never seem to outgrow Anne.",
-    },
-  ],
-},
-  {
-    title: "Movies & TV",
-    items: [
-      {
-        name: "The China Syndrome",
-        note: "I have a particular soft spot for Jack Godell.",
-      },
-    ],
-  },
-  {
-    title: "Games",
-    items: [
-      {
-        name: "Single-player, mostly",
-        note: "I'll fill this shelf as I remember what belongs here.",
-      },
-    ],
-  },
-];
+const typeOrder = ["Book", "Movie", "TV", "Game", "Other"];
 
-export default function ShelfPage() {
+const sectionTitles: Record<string, string> = {
+  Book: "Books",
+  Movie: "Movies",
+  TV: "Television",
+  Game: "Games",
+  Other: "Other",
+};
+
+function groupShelfItems(items: ShelfItem[]) {
+  return typeOrder
+    .map((type) => ({
+      type,
+      title: sectionTitles[type],
+      items: items.filter((item) => item.type === type),
+    }))
+    .filter((section) => section.items.length > 0);
+}
+
+export default async function ShelfPage() {
+  const items = await getDisplayedShelfItems();
+  const sections = groupShelfItems(items);
+
   return (
-    <main className="flex-1">
-      <section className="mx-auto max-w-7xl px-6 py-20 md:px-12 lg:py-28">
-        <p className="text-xs uppercase tracking-[0.3em] text-(--palm)">
+    <main className="px-6 py-20 md:px-12 lg:px-20">
+      <section className="mx-auto max-w-6xl">
+        <p className="text-xs uppercase tracking-[0.25em]">
           Shelf
         </p>
 
@@ -59,14 +45,14 @@ export default function ShelfPage() {
         </h1>
 
         <p className="mt-8 max-w-xl text-lg leading-8 text-(--muted)">
-          Books, movies, television, games, and whatever else earns a place
-          on the shelf.
+          Books, movies, television, games, and whatever else earns a
+          place on the shelf.
         </p>
 
         <div className="mt-20">
-          {shelf.map((section) => (
+          {sections.map((section) => (
             <section
-              key={section.title}
+              key={section.type}
               className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[1fr_2fr]"
             >
               <h2 className="font-display text-4xl">
@@ -75,18 +61,27 @@ export default function ShelfPage() {
 
               <div>
                 {section.items.map((item) => (
-                  <div
-                    key={item.name}
+                  <article
+                    key={item.id}
                     className="border-b border-black/10 py-6 first:pt-0"
                   >
                     <h3 className="font-display text-2xl">
-                      {item.name}
+                      <Link
+                        href={`/shelf/${item.slug}`}
+                        className="transition-opacity hover:opacity-60"
+                      >
+                        {item.title}
+                      </Link>
                     </h3>
 
-                    <p className="mt-2 max-w-xl leading-7 text-(--muted)">
-                      {item.note}
-                    </p>
-                  </div>
+                    {(item.creator || item.year) && (
+                      <p className="mt-2 text-sm tracking-wide text-(--muted)">
+                        {item.creator}
+                        {item.creator && item.year ? " · " : ""}
+                        {item.year}
+                      </p>
+                    )}
+                  </article>
                 ))}
               </div>
             </section>

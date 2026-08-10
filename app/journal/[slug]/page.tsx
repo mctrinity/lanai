@@ -5,6 +5,7 @@ import {
   getJournalEntryBySlug,
 } from "@/lib/notion";
 import NotionRenderer from "@/components/NotionRenderer";
+import Link from "next/link";
 
 type PageProps = {
   params: Promise<{
@@ -54,8 +55,15 @@ export default async function JournalEntryPage({ params }: PageProps) {
 
   return (
     <main className="flex-1">
-      <article className="mx-auto max-w-3xl px-6 py-20 md:px-12 lg:py-24">
-        <p className="text-xs uppercase tracking-[0.3em] text-(--palm)">
+      <article className="mx-auto max-w-4xl">
+        <Link
+          href="/journal"
+          className="mb-10 inline-block text-sm text-(--muted) transition-opacity hover:opacity-60"
+        >
+          ← Back to Journal
+        </Link>
+
+        <p className="text-xs uppercase tracking-[0.25em]">
           Journal
         </p>
 
