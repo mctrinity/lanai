@@ -67,17 +67,29 @@ export default async function JournalEntryPage({ params }: PageProps) {
           Journal
         </p>
 
-        <h1 className="font-display mt-8 text-6xl leading-[0.95] tracking-tight md:text-7xl">
-          {entry.title}
-        </h1>
+        <div className="mt-10 grid gap-12 md:grid-cols-[1fr_1.7fr] md:gap-8">
+          <div>
+            <h1
+              className={`font-display leading-[0.95] tracking-tight ${
+                entry.title.length > 32
+                  ? "text-5xl md:text-6xl"
+                  : "text-6xl md:text-7xl"
+              }`}
+            >
+              {entry.title}
+            </h1>
 
-        {entry.published && (
-          <time className="mt-6 block text-xs uppercase tracking-[0.2em] text-(--muted)">
-            {formatDate(entry.published)}
-          </time>
-        )}
+            {entry.published && (
+              <time className="mt-8 block text-xs uppercase tracking-[0.2em] text-(--muted)">
+                {formatDate(entry.published)}
+              </time>
+            )}
+          </div>
 
-        <NotionRenderer blocks={blocks} />
+          <div>
+            <NotionRenderer blocks={blocks} flushTop />
+          </div>
+        </div>
       </article>
     </main>
   );

@@ -7,6 +7,7 @@ import type { NotionBlock } from "@/lib/notion";
 type Props = {
   blocks: NotionBlock[];
   nested?: boolean;
+  flushTop?: boolean;
 };
 
 function renderRichText(richText: RichTextItemResponse[]) {
@@ -57,6 +58,7 @@ function renderRichText(richText: RichTextItemResponse[]) {
 export default function NotionRenderer({
   blocks,
   nested = false,
+  flushTop = false,
 }: Props) {
   const elements: React.ReactNode[] = [];
 
@@ -286,7 +288,9 @@ export default function NotionRenderer({
       className={
         nested
           ? "space-y-2"
-          : "mt-14 space-y-7 text-[17px] leading-8 text-(--muted)"
+          : `${
+              flushTop ? "" : "mt-14"
+            } space-y-7 text-[17px] leading-8 text-(--muted)`
       }
     >
       {elements}
