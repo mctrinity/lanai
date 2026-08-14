@@ -55,7 +55,7 @@ export default async function JournalEntryPage({ params }: PageProps) {
 
   return (
     <main className="flex-1">
-      <article className="mx-auto max-w-4xl">
+      <article className="mx-auto max-w-4xl px-6 md:px-8 lg:px-0">
         <Link
           href="/journal"
           className="mb-10 inline-block text-sm text-(--muted) transition-opacity hover:opacity-60"
